@@ -1,0 +1,8 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/football/hair"
+	"$bumpmap" "models/football/hair_n"
+	"$alphatest" "1"
+	"$halflambert" 1
+	"$nocull" "1" 
+}

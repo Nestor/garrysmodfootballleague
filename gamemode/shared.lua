@@ -57,6 +57,8 @@ function gfl.includeDir(directory, fromLua)
 end
 
 
+-- Loading 3rd party modules
+gfl.includeDir("gfl/gamemode/thirdparty")
 
 -- Loading core
 gfl.includeDir("gfl/gamemode/core")
