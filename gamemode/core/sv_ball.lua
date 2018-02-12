@@ -6,6 +6,10 @@ function GFL:ShouldPlayerTakeDamage()
 	return false
 end
 
+function GFL:EntityTakeDamage()
+	return true
+end
+
 function gfl.ReloadBall()
 	for v,k in pairs(ents.GetAll()) do
 		if k:GetClass() == "gfl_ball" then
@@ -18,3 +22,4 @@ function gfl.ReloadBall()
 	ball:Spawn()
 	gfl.ball = ball
 end
+

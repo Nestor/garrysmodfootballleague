@@ -9,6 +9,7 @@ if CLIENT then
 		local feetPos = LocalPlayer():GetPos() + LocalPlayer():GetAngles():Up() * 3
 		if key == IN_ATTACK and CurTime() > lastHand + 1 then
 			if feetPos:Distance(gfl.GetBall():GetPos()) > 42 then return end
+			--local inFront = ents.FindInCone(feetPos, LocalPlayer():GetAngles():Forward(), 130, 140)
 			netstream.Start("ballKick")
 			lastKick = CurTime()
 			return false
@@ -42,11 +43,12 @@ else
 			for v,k in pairs(player.GetAll()) do
 				netstream.Start(k, "ballKickAnim", ply)
 			end
+			ball:EmitSound("gfl/kick_"..math.random(1,4)..".wav", 90)
 			local phys = gfl.ball:GetPhysicsObject()
 			local damage = 35
 			phys:ApplyForceOffset(ply:GetAimVector():GetNormalized() * (damage * 100 * 5), trace.HitPos)
-			trace.Entity:SetVelocity(ply:GetAimVector():GetNormalized() * (damage * 100 * 5))
-			trace.lastKicker = ply
+			ball:SetVelocity(ply:GetAimVector():GetNormalized() * (damage * 100 * 5))
+			ball.lastKicker = ply
 	end)
 
 end

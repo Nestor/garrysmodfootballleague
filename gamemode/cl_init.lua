@@ -9,6 +9,11 @@ util.PrecacheSound("gfl/goal.wav")
 util.PrecacheSound("gfl/lalalala_chant.mp3")
 util.PrecacheSound("gfl/wonderland_chant.wav")
 
+util.PrecacheSound("gfl/kick_1.wav")
+util.PrecacheSound("gfl/kick_2.wav")
+util.PrecacheSound("gfl/kick_3.wav")
+util.PrecacheSound("gfl/kick_4.wav")
+
 util.PrecacheModel("konnie/football/football.mdl")
 
 

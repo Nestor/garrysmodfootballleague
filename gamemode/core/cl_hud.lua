@@ -1,13 +1,18 @@
 local gap = 5
 local length = gap + 5
 local crosshair_acc = 25
+local white = Color(255,255,255,255)
+local red = Color(255,10,10,255)
 
 function GFL:HUDPaint()
 	local p = LocalPlayer():GetEyeTrace().HitPos:ToScreen()
 	local x,y = p.x, p.y
 	surface.SetDrawColor( 255, 255,255, 155 )
 
-	surface.DrawCircle(x,y,crosshair_acc,Color(255,255,255,255))
+	local trace = LocalPlayer():GetEyeTrace()
+	local dist = trace.HitPos:Distance(LocalPlayer():GetPos())/100
+
+	surface.DrawCircle(x,y,crosshair_acc+dist,white)
 end
 
 local hidden = {}
