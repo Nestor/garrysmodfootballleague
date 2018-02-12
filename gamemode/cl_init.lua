@@ -4,6 +4,13 @@
 */
 
 DeriveGamemode("base")
+util.PrecacheSound("gfl/genericloop.wav")
+util.PrecacheSound("gfl/goal.wav")
+util.PrecacheSound("gfl/lalalala_chant.mp3")
+util.PrecacheSound("gfl/wonderland_chant.wav")
+
+util.PrecacheModel("konnie/football/football.mdl")
+
 
 gfl = {} -- defining global function table
 gfl.meta = FindMetaTable( "Player" )

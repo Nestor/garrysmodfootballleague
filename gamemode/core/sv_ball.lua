@@ -16,4 +16,5 @@ function gfl.ReloadBall()
 	local ball = ents.Create("gfl_ball")
 	ball:SetPos(gfl.GetStadium().ballPos)
 	ball:Spawn()
+	gfl.ball = ball
 end

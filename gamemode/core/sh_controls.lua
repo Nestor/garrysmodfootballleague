@@ -4,14 +4,15 @@ if CLIENT then
 	local lastKick = 0
 
 	function GFL:KeyPress(ply, key)
-		local trace = ply:GetEyeTrace()
+		local ball = gfl.GetBall()
+		if not ball then return end
+		local feetPos = LocalPlayer():GetPos() + LocalPlayer():GetAngles():Up() * 3
 		if key == IN_ATTACK and CurTime() > lastHand + 1 then
-			if trace.Entity:GetPos():Distance(LocalPlayer():GetPos()) > 100 then return end
-			if trace.Entity:GetClass() == "gfl_ball" then
-				netstream.Start("ballKick")
-				lastKick = CurTime()
-				return false
-			end
+			if feetPos:Distance(gfl.GetBall():GetPos()) > 42 then return end
+			chat.AddText("Hoof")
+			netstream.Start("ballKick")
+			lastKick = CurTime()
+			return false
 		elseif key == IN_RELOAD and CurTime() > lastHand + 3 then
 			netstream.Start("handUp")
 			lastHand = CurTime()
@@ -36,16 +37,17 @@ else
 
 	netstream.Hook("ballKick", function(ply)
 		local trace = ply:GetEyeTrace()
-		if trace.Entity and trace.Entity:IsValid() and trace.Entity:GetClass() == "gfl_ball" then
+		local feetPos = ply:GetPos() + ply:GetAngles():Up() * 3
+		local ball = gfl.ball
+		if feetPos:Distance(ball:GetPos()) > 50 then return end
 			for v,k in pairs(player.GetAll()) do
 				netstream.Start(k, "ballKickAnim", ply)
 			end
-			local phys = trace.Entity:GetPhysicsObject()
+			local phys = gfl.ball:GetPhysicsObject()
 			local damage = 35
 			phys:ApplyForceOffset(ply:GetAimVector():GetNormalized() * (damage * 100 * 5), trace.HitPos)
 			trace.Entity:SetVelocity(ply:GetAimVector():GetNormalized() * (damage * 100 * 5))
 			trace.lastKicker = ply
-		end
 	end)
 
 end
