@@ -9,7 +9,7 @@ print("\nGFL 2018:")
 print('\nCopyright (c) 2018 Jake Green')
 print('No permission is granted to USE, REPRODUCE, EDIT or SELL this software.')
 
-gfl = {} -- defining global function table
+gfl = gfl or {} -- defining global function table
 
 gfl.meta = FindMetaTable( "Player" )
 
