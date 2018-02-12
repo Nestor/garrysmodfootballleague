@@ -9,7 +9,6 @@ if CLIENT then
 		local feetPos = LocalPlayer():GetPos() + LocalPlayer():GetAngles():Up() * 3
 		if key == IN_ATTACK and CurTime() > lastHand + 1 then
 			if feetPos:Distance(gfl.GetBall():GetPos()) > 42 then return end
-			chat.AddText("Hoof")
 			netstream.Start("ballKick")
 			lastKick = CurTime()
 			return false
