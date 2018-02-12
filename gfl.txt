@@ -1,0 +1,8 @@
+"gfl"
+{
+	"base"		"base"
+	"title"		"Garry's Mod Football League"
+	"maps"		"^gfl_"
+	"menusystem"	"1"
+
+}
