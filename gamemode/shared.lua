@@ -9,6 +9,8 @@ GM.Name = "Garry's Mod Football League"
 GM.Author = "TheVingard"
 GM.Website = "https://www.vingard.github.io"
 
+GFL = GM
+
 -- Called after the gamemode has loaded.
 function GM:Initialize()
 	gfl.reload()
@@ -67,7 +69,7 @@ gfl.includeDir("gfl/gamemode/patches")
 
 
 function gfl.reload()
-    gfl.includeDir("impulse/gamemode/core")
+    gfl.includeDir("gfl/gamemode/core")
 end
 
 

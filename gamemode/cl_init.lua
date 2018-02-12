@@ -4,7 +4,6 @@
 */
 
 DeriveGamemode("base")
-MsgC( Color( 83, 143, 239 ), "[IMPULSE] Starting client load...\n" )
 
 gfl = {} -- defining global function table
 gfl.meta = FindMetaTable( "Player" )
