@@ -1,10 +1,10 @@
-function GM:ShouldDrawLocalPlayer()
+function GFL:ShouldDrawLocalPlayer()
     return true
 end
 
 local distance = 100
 
-function GM:CalcView(ply, pos, angles, fov)
+function GFL:CalcView(ply, pos, angles, fov)
 	local trace = {}
 	local view = {}
 

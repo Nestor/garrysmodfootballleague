@@ -12,12 +12,12 @@ GM.Website = "https://www.vingard.github.io"
 GFL = GM
 
 -- Called after the gamemode has loaded.
-function GM:Initialize()
+function GFL:Initialize()
 	gfl.reload()
 end
 
 -- Called when a file has been modified.
-function GM:OnReloaded()
+function GFL:OnReloaded()
 	gfl.reload()
 end
 
