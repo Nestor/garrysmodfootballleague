@@ -50,7 +50,7 @@ end
 
 function gfl.includeDir(directory, fromLua)
 	for k, v in ipairs(file.Find(directory.."/*.lua", "LUA")) do
-    	impulse.lib.LoadFile(directory.."/"..v)
+    	gfl.LoadFile(directory.."/"..v)
 	end
 end
 
@@ -67,7 +67,7 @@ gfl.includeDir("gfl/gamemode/patches")
 
 
 function gfl.reload()
-    impulse.lib.includeDir("impulse/gamemode/core")
+    gfl.includeDir("impulse/gamemode/core")
 end
 
 
