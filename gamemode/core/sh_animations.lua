@@ -2,6 +2,33 @@ local IsValid = IsValid
 local os = os
 local util = util
 local lastfov = 0
+
+RegisterLuaAnimation('gfl_normal_kick', {
+	FrameData = {
+		{
+			BoneInfo = {
+				['ValveBiped.Bip01_R_Calf'] = {
+					RU = -44.555652469149
+				},
+				['ValveBiped.Bip01_R_Thigh'] = {
+					RU = -50.441395011994
+				}
+			},
+			FrameRate = 40
+		},
+		{
+			BoneInfo = {
+				['ValveBiped.Bip01_R_Calf'] = {
+				},
+				['ValveBiped.Bip01_R_Thigh'] = {
+				}
+			},
+			FrameRate = 2
+		}
+	},
+	Type = TYPE_GESTURE
+})
+
 hook.Add("CalcMainActivity", "GFL-ANIMATIONBASE", function( Player, Velocity )
 	local speed = Velocity:Length()
 	local fov = Player:GetFOV()
@@ -17,3 +44,5 @@ hook.Add("CalcMainActivity", "GFL-ANIMATIONBASE", function( Player, Velocity )
 	end
 
 end)
+
+

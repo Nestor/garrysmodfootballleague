@@ -21,4 +21,11 @@ if SERVER then
 			physObj:Wake()
 		end
 	end
+
+	function ENT:PhysicsCollide(data, collider)
+		local player = data.HitEntity
+		if IsValid(player) and player:IsPlayer() then
+			self.lastToucher = player
+		end
+	end
 end

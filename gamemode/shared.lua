@@ -46,6 +46,12 @@ function gfl.LoadFile(fileName)
 		else
 			include(fileName)
 		end
+	else
+		if (SERVER) then
+			AddCSLuaFile(fileName)
+		end
+
+		include(fileName)
 	end
 end
 
@@ -59,6 +65,12 @@ end
 
 -- Loading 3rd party modules
 gfl.includeDir("gfl/gamemode/thirdparty")
+
+if SERVER then
+	include("gfl/gamemode/animationapi/boneanimlib.lua")
+else
+	include("gfl/gamemode/animationapi/cl_boneanimlib.lua")
+end
 
 -- Loading core
 gfl.includeDir("gfl/gamemode/core")
