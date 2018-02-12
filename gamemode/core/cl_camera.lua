@@ -18,7 +18,9 @@ function GFL:CalcView(ply, pos, angles, fov)
 
 	view.origin = pos - (angles:Forward() * 100) + (angles:Right() * 40)
 	view.angles = angles
-	view.fov = fov
+
+	local speed = ply:GetVelocity():Length()
+	view.fov = fov + (speed/28)
 
 	return view
 end
