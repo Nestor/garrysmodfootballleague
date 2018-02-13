@@ -2,6 +2,7 @@ if CLIENT then
 
 	local lastHand = 0
 	local lastKick = 0
+	LocalPlayer().ScoreTime = 0
 
 	function GFL:KeyPress(ply, key)
 		local ball = gfl.GetBall()
@@ -18,7 +19,7 @@ if CLIENT then
 			lastHand = CurTime()
 			return false
 		elseif key == IN_USE and LocalPlayer().ScoreTime + 10 > CurTime() then
-
+			netstream.Start("randomCelebration")
 		end
 	end
 
@@ -52,6 +53,17 @@ else
 			--ball:SetVelocity(ply:GetAimVector():GetNormalized() * (damage * 100 * 5))
 			ball.lastKicker = ply
 			ball.lastToucher = ply
+	end)
+
+	local celebrations = {
+	ACT_GMOD_TAUNT_CHEER,
+	ACT_GMOD_TAUNT_ROBOT,
+	ACT_GMOD_TAUNT_SALUTE,
+	ACT_GMOD_TAUNT_DISAGREE
+	}
+
+	netstream.Hook("randomCelebration", function()
+		gfl.PlayGesutre(celebrations[math.random(0,#celebrations)])
 	end)
 
 end

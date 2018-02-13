@@ -15,7 +15,7 @@ if SERVER then
 
 	function ENT:StartTouch(entity)
 		if self.type == "goal" and entity == gfl.ball then
-			gfl.GoalScore(self.typeVar)
+			gfl.GoalScore(self.typeVar, entity.lastToucher)
 		end
 	end
 
