@@ -11,15 +11,22 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 			if k == scorer then
 				k:Notify(0,1,"YOU SCORED! Press E to celebrate!", 7)
 			else
-				k:Notify(0,1, scorer:Nick().."has scored! Go and celebrate with him!", 10, scorer)
+				k:Notify(0,1, scorer:Nick().." has scored! Go and celebrate with him!", 10, scorer)
 			end
+			k:EmitSound("vo/coast/odessa/male01/nlo_cheer0"..math.random(1,4)..".wav")
+		end
+		for v,k in pairs(team.GetPlayers(teamGoalId)) do
+			k:Notify(0,1,"You've conceded a goal scored by "..scorer:Nick()..".", 10, scorer)
+			k:EmitSound("vo/coast/odessa/male01/nlo_cubdeath0"..math.random(1,2)..".wav")
 		end
 	else
 		for v,k in pairs(team.GetPlayers(scoringTeam)) do
-			k:Notify(0,1, scorer:Nick().."has scored an own-goal!", 10, scorer)
+			k:Notify(0,1, scorer:Nick().." has scored an own-goal!", 10, scorer)
+			k:EmitSound("vo/coast/odessa/male01/nlo_cheer0"..math.random(1,4)..".wav")
 		end
 		for v,k in pairs(team.GetPlayers(scorer:Team())) do
-			k:Notify(0,1,"You've conceded a goal by "..scorer:Nick().." (OWN-GOAL).", 10, scorer)
+			k:Notify(0,1,"You've conceded a goal scored by "..scorer:Nick().." (OWN-GOAL).", 10, scorer)
+			k:EmitSound("vo/coast/odessa/male01/nlo_cubdeath0"..math.random(1,2)..".wav")
 		end
 	end
 

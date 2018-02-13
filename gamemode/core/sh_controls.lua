@@ -14,7 +14,7 @@ if CLIENT then
 			netstream.Start("ballKick")
 			lastKick = CurTime()
 			return false
-		elseif key == IN_RELOAD and CurTime() > lastHand + 3 then
+		elseif key == IN_RELOAD and CurTime() > lastHand + 8 then
 			netstream.Start("handUp")
 			lastHand = CurTime()
 			return false
@@ -38,9 +38,7 @@ else
 	netstream.Hook("handUp", function(ply)
 		ply:PlayGesture(ACT_SIGNAL_HALT)
 		for v,k in pairs(team.GetPlayers(ply:Team())) do
-			if not k == ply then
-				k:Notify(0,1, ply:Nick().." is requesting attention.", 5, ply)
-			end
+			k:Notify(0,1, ply:Nick().." is requesting attention.", 3, ply)
 		end
 	end)
 
@@ -62,10 +60,10 @@ else
 	end)
 
 	local celebrations = {
-	ACT_GMOD_TAUNT_CHEER,
-	ACT_GMOD_TAUNT_ROBOT,
-	ACT_GMOD_TAUNT_SALUTE,
-	ACT_GMOD_TAUNT_DISAGREE
+		ACT_GMOD_TAUNT_CHEER,
+		ACT_GMOD_TAUNT_ROBOT,
+		ACT_GMOD_TAUNT_SALUTE,
+		ACT_GMOD_TAUNT_DISAGREE
 	}
 
 	netstream.Hook("randomCelebration", function(ply)

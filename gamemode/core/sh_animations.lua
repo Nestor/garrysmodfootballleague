@@ -44,3 +44,6 @@ hook.Add("CalcMainActivity", "GFL-ANIMATIONBASE", function( Player, Velocity )
 end)
 
 
+function GFL:PlayerShouldTaunt()
+	return false
+end

@@ -17,9 +17,9 @@ if SERVER then
 		p:SetPlayerColor(ColToVec(team.GetColor(p:Team())))
 	end
 
-	function gfl.meta:ChangeTeam(team)
-		self:SetTeam(team)
-		self:SetPlayerColor(ColToVec(team.GetColor(p:Team())))
+	function gfl.meta:ChangeTeam(teamx)
+		self:SetTeam(teamx)
+		self:SetPlayerColor(ColToVec(team.GetColor(teamx)))
 		self:ChatPrint("You have switched teams")
 	end
 
@@ -59,3 +59,4 @@ if SERVER then
 		end
 	end
 end
+
