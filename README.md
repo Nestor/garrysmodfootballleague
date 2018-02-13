@@ -9,9 +9,9 @@ I'm planning to add a Stadium Designer currently the in-game stadiums are:
 
 ## Credits
 
-vingard - gamemode developer
-Konnie - footballer models
-rebel 2314 - hints
-thelastpenguin - pON
-alex grist - netstream
-kyle smith - utf-8 module
+* vingard - gamemode developer
+* Konnie - footballer models
+* rebel 2314 - hints
+* thelastpenguin - pON
+* alex grist - netstream
+* kyle smith - utf-8 module
