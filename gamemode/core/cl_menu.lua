@@ -46,7 +46,7 @@ local function openMenu()
 	E - Celebrate
 	R - Call for team
 	SHIFT - Sprint
-	Q - Open menu
+	F1 - Open menu
 	]]
 
 	local info = vgui.Create( "DLabel", Menu )
