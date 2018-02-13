@@ -56,3 +56,39 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 		end
 	end)
 end
+
+function gfl.MatchStart()
+	gfl.matchStart = math.floor(CurTime())
+	gfl.matchEnd = gfl.matchStart + 900 -- 900 is the round length
+	SetGlobalInt("gfl_matchstart", gfl.matchStart)
+	timer.Remove("gfl_svround")
+	timer.Create("gfl_svround", 900, 1, function()
+		local homeScore = team.GetScore(1)
+		local awayScore = team.GetScore(2)
+		for v,k in pairs(player.GetAll()) do
+			if homeScore==awayScore then
+				k:Notify(0,1,"Game over. Draw, HOME: "..homeScore.." AWAY: "..awayScore, 10)
+			else
+				k:Notify(0,1,"Game over. Win, HOME: "..homeScore.." AWAY: "..awayScore, 10)
+			end
+		end
+		team.SetScore(1,0)
+		team.SetScore(2,0)
+		timer.Simple(2, function() gfl.ball:Remove() end)
+		timer.Simple(9, function()
+			gfl.RespawnAll()
+			for v,k in pairs(player.GetAll()) do
+				k:Freeze(true)
+			end
+		end)
+		timer.Simple(14, function() gfl.ReloadBall() end)
+		timer.Simple(15, function()
+			for v,k in pairs(player.GetAll()) do
+				k:Freeze(false)
+			end
+			gfl.MatchStart()
+		end)
+	end)
+end
+
+gfl.MatchStart()
