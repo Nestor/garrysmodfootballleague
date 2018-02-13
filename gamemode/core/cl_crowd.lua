@@ -1,8 +1,15 @@
 
-hook.Remove("PlayerInitialSpawn","GFL-earrape")
-hook.Add("PlayerInitialSpawn","GFL-earrape", function()
+hook.Remove("InitPostEntity","GFL-earrape")
+hook.Add("InitPostEntity","GFL-earrape", function()
 	EmitSound( Sound( "gfl/genericloop.wav" ), LocalPlayer():GetPos(), 1, CHAN_STATIC, 0.2, 75, 0, 100 )
 end)
+
+timer.Remove("GFL-CHANTS")
+
+timer.Create("GFL-CHANTS", 200, 0, function()
+	EmitSound( Sound( "gfl/chant_"..math.random(1,2)..".wav" ), LocalPlayer():GetPos(), 1, CHAN_STATIC, 0.4, 95, 0, 100 )
+end)
+
 
 netstream.Hook("score", function(scorer, scoringTeam)
 	EmitSound(Sound("gfl/goal.wav"), LocalPlayer():GetPos(), 1, CHAN_STATIC, 1, 110, 0, 100)
