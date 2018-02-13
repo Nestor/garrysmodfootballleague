@@ -10,9 +10,10 @@ local function ColToVec( color )
 end
 
 if SERVER then
-	function GFL:PlayerSpawn(p)
+	function GFL:PlayerInitialSpawn(p)
 		p:SetModel("models/konnie/football/football.mdl")
 		p:SetTeam(team.BestAutoJoinTeam())
+		p:Spawn()
 		p:SetPlayerColor(ColToVec(team.GetColor(p:Team())))
 	end
 
@@ -30,7 +31,7 @@ if SERVER then
 
 	function GFL:PlayerSelectSpawn(ply)
 		if ply:Team() == 1 then
-			local spawns = ents.FindByClass( "info_player_terrorist" )
+			local spawns = ents.FindByClass( "info_player_counterterrorist" )
 			for i=0, #spawns do
 				local randomSpawn = math.random(#spawns)
 				if (self:IsSpawnpointSuitable( ply, spawns[randomSpawn], i == #spawns)) then
@@ -39,7 +40,7 @@ if SERVER then
 			end
 
 		elseif ply:Team() == 2 then
-			local spawns = ents.FindByClass( "info_player_counterterrorist" )
+			local spawns = ents.FindByClass( "info_player_terrorist" )
 			for i=0, #spawns do
 				local randomSpawn = math.random(#spawns)
 				if (self:IsSpawnpointSuitable( ply, spawns[randomSpawn], i == #spawns)) then

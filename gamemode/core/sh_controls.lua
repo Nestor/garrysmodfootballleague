@@ -3,7 +3,6 @@ if CLIENT then
 	local lastHand = 0
 	local lastKick = 0
 	local lastCelebration = 0
-	LocalPlayer().ScoreTime = 0
 
 	function GFL:KeyPress(ply, key)
 		local ball = gfl.GetBall()
@@ -19,7 +18,7 @@ if CLIENT then
 			netstream.Start("handUp")
 			lastHand = CurTime()
 			return false
-		elseif key == IN_USE and LocalPlayer().ScoreTime + 10 > CurTime() and CurTime() > lastCelebration + 10 then
+		elseif key == IN_USE and (LocalPlayer().ScoreTime or 0) + 10 > CurTime() and CurTime() > lastCelebration + 10 then
 			netstream.Start("randomCelebration")
 			lastCelebration = CurTime()
 		end
