@@ -7,7 +7,7 @@ if CLIENT then
 		local ball = gfl.GetBall()
 		if not ball then return end
 		local feetPos = LocalPlayer():GetPos() + LocalPlayer():GetAngles():Up() * 3
-		if key == IN_ATTACK and CurTime() > lastHand + 1 then
+		if key == IN_ATTACK and CurTime() > lastKick + 1 then
 			if feetPos:Distance(gfl.GetBall():GetPos()) > 42 then return end
 			--local inFront = ents.FindInCone(feetPos, LocalPlayer():GetAngles():Forward(), 130, 140)
 			netstream.Start("ballKick")
