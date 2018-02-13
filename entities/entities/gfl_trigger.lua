@@ -6,6 +6,7 @@ if SERVER then
 	function ENT:Initialize()
 		self:SetSolid(SOLID_BBOX)
 		self:SetTrigger(true)
+		print("GFL trigger created!")
 	end
 
 	function ENT:SetType(type,int)
@@ -14,9 +15,9 @@ if SERVER then
 	end
 
 	function ENT:StartTouch(entity)
+		print(entity)
 		if self.type == "goal" and entity == gfl.ball then
-			gfl.GoalScore(self.typeVar, entity.lastToucher)
+			gfl.ScoreGoal(self.typeVar, entity.lastToucher)
 		end
 	end
-
 end

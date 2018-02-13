@@ -1,4 +1,4 @@
-function gfl.GoalScore(teamGoalId, scorer)
+function gfl.ScoreGoal(teamGoalId, scorer)
 	local scoringTeam
 	if teamGoalId == TEAM_HOME then
 		scoringTeam = TEAM_AWAY
@@ -22,7 +22,7 @@ function gfl.GoalScore(teamGoalId, scorer)
 			k:Notify(0,1, scorer:Nick().."has scored an own-goal!", 10, scorer)
 		end
 		for v,k in pairs(team.GetPlayers(scorer:Team())) do
-			k:Notify(0,1,"You've conceded a goal by "..scorer:Nick()" (OWN-GOAL).", 10, scorer)
+			k:Notify(0,1,"You've conceded a goal by "..scorer:Nick().." (OWN-GOAL).", 10, scorer)
 		end
 	end
 
