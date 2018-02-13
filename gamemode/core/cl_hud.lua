@@ -5,6 +5,7 @@ local white = Color(255,255,255,255)
 local red = Color(255,10,10,255)
 
 function GFL:HUDPaint()
+	if cameraMode then return end
 	local p = LocalPlayer():GetEyeTrace().HitPos:ToScreen()
 	local x,y = p.x, p.y
 	surface.SetDrawColor( 255, 255,255, 155 )

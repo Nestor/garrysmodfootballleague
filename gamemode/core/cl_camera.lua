@@ -1,9 +1,18 @@
 function GFL:ShouldDrawLocalPlayer()
+	if cameraMode then return false end
     return true
 end
 
+concommand.Add("gfl_cameramode", function()
+	if cameraMode then
+		cameraMode = nil
+	else
+		cameraMode = true
+	end
+end)
 
 function GFL:CalcView(ply, pos, angles, fov)
+	if cameraMode then return end
 	local trace = {}
 	local view = {}
 	local distance = 110

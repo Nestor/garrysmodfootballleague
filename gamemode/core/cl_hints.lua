@@ -115,6 +115,7 @@ local hookRun = hook.Run
 local toScreen = FindMetaTable("Vector").ToScreen
 
 hook.Add("HUDPaintBackground","DrawNSHintsBG",function()
+	if cameraMode then return end
     local realTime = RealTime()
     local localPlayer = LocalPlayer()
 
@@ -146,6 +147,7 @@ hook.Add("HUDPaintBackground","DrawNSHintsBG",function()
 end)
 
 hook.Add("HUDPaint","DrawNSHints",function()
+	if cameraMode then return end
 
     local lerpFT = RealFrameTime() * 7
 
