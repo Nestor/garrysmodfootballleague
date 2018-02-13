@@ -13,13 +13,6 @@ if SERVER then
 		self:PhysicsInit(SOLID_VPHYSICS)
 		self:SetMoveType( MOVETYPE_VPHYSICS )
 
-		local physObj = self:GetPhysicsObject()
-
-		if (IsValid(physObj)) then
-			physObj:SetMaterial( "gmod_bouncy" )
-			physObj:EnableMotion(true)
-			physObj:Wake()
-		end
 	end
 
 	function ENT:PhysicsCollide(data, collider)

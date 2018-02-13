@@ -14,9 +14,6 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 				k:Notify(0,1, scorer:Nick().."has scored! Go and celebrate with him!", 10, scorer)
 			end
 		end
-		for v,k in pairs(team.GetPlayers(scorer:Team())) do
-			k:Notify(0,1,"You've conceded a goal by "..scorer:Nick()".", 10, scorer)
-		end
 	else
 		for v,k in pairs(team.GetPlayers(scoringTeam)) do
 			k:Notify(0,1, scorer:Nick().."has scored an own-goal!", 10, scorer)
@@ -31,4 +28,8 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 	for v,k in pairs(player.GetAll()) do
 		netstream.Start(k, "score", scorer, scoringTeam)
 	end
+
+	timer.Simple(2, function() gfl.ball:Remove() end)
+	timer.Simple(9, function() gfl.RespawnAll() end)
+	timer.Simple(14, function() gfl.ReloadBall() end)
 end

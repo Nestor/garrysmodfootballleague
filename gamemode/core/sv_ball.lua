@@ -20,6 +20,19 @@ function gfl.ReloadBall()
 	local ball = ents.Create("gfl_ball")
 	ball:SetPos(gfl.GetStadium().ballPos)
 	ball:Spawn()
+	local physObj = ball:GetPhysicsObject()
+
+	if (IsValid(physObj)) then
+		physObj:SetMaterial( "gmod_bouncy" )
+		physObj:EnableMotion(false)
+		timer.Simple(1, function()
+			physObj:Wake()
+			for v,k in pairs(player.GetAll()) do
+				k:EmitSound("gfl/whistle.wav")
+			end
+			physObj:EnableMotion(true)
+		end)
+	end
 	gfl.ball = ball
 end
 

@@ -1,5 +1,5 @@
 AddStadium("df_soccer_2006_v6", {
-	ballPos = Vector(6187.709961, 3230.755127, 1090.717773)
+	ballPos = Vector(6144, 3328, 1050)
 })
 
 if SERVER then
@@ -22,7 +22,7 @@ if SERVER then
 		goal:SetAngles( Angle( 90, 90, 0 ) )
 		goal:SetPos( Vector( 6140, 1915, 1065 ) )
 		goal:SetRenderMode( RENDERMODE_TRANSALPHA )
-		goal:SetColor( Color( 255, 255, 255, 190) )
+		goal:SetColor( Color( 255, 255, 255, 0) )
 		goal:SetSolid( SOLID_OBB )
 		goal:SetCustomCollisionCheck( true )
 		goal:SetTrigger( true )
@@ -40,7 +40,7 @@ if SERVER then
 		goal:SetAngles( Angle( 90, 90, 0 ) )
 		goal:SetPos( Vector( 6140, 4743, 1065 ) )
 		goal:SetRenderMode( RENDERMODE_TRANSALPHA )
-		goal:SetColor( Color( 255, 255, 255, 190) )
+		goal:SetColor( Color( 255, 255, 255, 0) )
 		goal:SetSolid( SOLID_OBB )
 		goal:SetCustomCollisionCheck( true )
 		goal:SetTrigger( true )

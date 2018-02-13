@@ -15,3 +15,8 @@ function GFL:PlayerSpawn(p)
 	p:SetTeam(team.BestAutoJoinTeam())
 end
 
+function gfl.RespawnAll()
+	for v,k in pairs(player.GetAll()) do
+		k:Spawn()
+	end
+end

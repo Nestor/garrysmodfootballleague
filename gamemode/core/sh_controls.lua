@@ -2,6 +2,7 @@ if CLIENT then
 
 	local lastHand = 0
 	local lastKick = 0
+	local lastCelebration = 0
 	LocalPlayer().ScoreTime = 0
 
 	function GFL:KeyPress(ply, key)
@@ -18,8 +19,9 @@ if CLIENT then
 			netstream.Start("handUp")
 			lastHand = CurTime()
 			return false
-		elseif key == IN_USE and LocalPlayer().ScoreTime + 10 > CurTime() then
+		elseif key == IN_USE and LocalPlayer().ScoreTime + 10 > CurTime() and CurTime() > lastCelebration + 10 then
 			netstream.Start("randomCelebration")
+			lastCelebration = CurTime()
 		end
 	end
 
@@ -62,8 +64,9 @@ else
 	ACT_GMOD_TAUNT_DISAGREE
 	}
 
-	netstream.Hook("randomCelebration", function()
-		gfl.PlayGesutre(celebrations[math.random(0,#celebrations)])
+	netstream.Hook("randomCelebration", function(ply)
+		local ran = celebrations[math.random(0,#celebrations)] or 1620
+		ply:PlayGesture(ran)
 	end)
 
 end
