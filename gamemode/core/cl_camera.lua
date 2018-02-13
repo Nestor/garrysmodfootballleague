@@ -3,7 +3,7 @@ function GFL:ShouldDrawLocalPlayer()
     return true
 end
 
-concommand.Add("gfl_cameramode", function()
+concommand.Add("gfl_togglecameramode", function()
 	if cameraMode then
 		cameraMode = nil
 	else
