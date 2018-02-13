@@ -10,6 +10,7 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 		for v,k in pairs(team.GetPlayers(scoringTeam)) do
 			if k == scorer then
 				k:Notify(0,1,"YOU SCORED! Press E to celebrate!", 7)
+				scorer:AddFrags(1)
 			else
 				k:Notify(0,1, scorer:Nick().." has scored! Go and celebrate with him!", 10, scorer)
 			end
@@ -36,7 +37,6 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 	end
 
 	team.SetScore(scoringTeam, team.GetScore(scoringTeam)+1)
-	scorer:AddFrags(1)
 
 	for v,k in pairs(player.GetAll()) do
 		netstream.Start(k, "score", scorer, scoringTeam)
@@ -87,8 +87,8 @@ function gfl.MatchStart()
 				k:Freeze(false)
 			end
 			gfl.MatchStart()
+			gfl.ReloadBall()
 		end)
 	end)
 end
 
-gfl.MatchStart()

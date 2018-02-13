@@ -38,6 +38,7 @@ end
 
 function GFL:InitPostEntity()
 	gfl.ReloadBall()
+	gfl.MatchStart()
 end
 
 
