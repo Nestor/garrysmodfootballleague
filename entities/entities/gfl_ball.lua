@@ -26,6 +26,8 @@ if SERVER then
 		local player = data.HitEntity
 		if IsValid(player) and player:IsPlayer() then
 			self.lastToucher = player
+			local phys = self:GetPhysicsObject()
+			phys:ApplyForceOffset(player:GetAimVector():GetNormalized() * 1000, player:GetEyeTrace().HitPos)
 		end
 	end
 end

@@ -47,8 +47,9 @@ else
 			local phys = gfl.ball:GetPhysicsObject()
 			local damage = 35
 			phys:ApplyForceOffset(ply:GetAimVector():GetNormalized() * (damage * 100 * 5), trace.HitPos)
-			ball:SetVelocity(ply:GetAimVector():GetNormalized() * (damage * 100 * 5))
+			--ball:SetVelocity(ply:GetAimVector():GetNormalized() * (damage * 100 * 5))
 			ball.lastKicker = ply
+			ball.lastToucher = ply
 	end)
 
 end
