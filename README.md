@@ -1,7 +1,5 @@
 # garrysmodfootballleague (gfl)
-GFL is an attempt to make a half decent football gamemode in Garry's Mod. Due to the fact it's Garry's Mod and this is a side project don't expect a quality product.
-
-To be honest, I'm more bothered about getting crowd-sounds and effects right.
+GFL is an attempt to make a half decent football gamemode in Garry's Mod. I was just going to make it so it's not impossible to kick a ball in [this gamemode](https://steamcommunity.com/workshop/filedetails/?id=483685661), then I decided to make my own instead.
 
 I'm planning to add a Stadium Designer currently the in-game stadiums are:
 * Training ground (done)
