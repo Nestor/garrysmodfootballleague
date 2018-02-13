@@ -36,3 +36,6 @@ function gfl.ReloadBall()
 	gfl.ball = ball
 end
 
+function GFL:InitPostEntity()
+	gfl.ReloadBall()
+end

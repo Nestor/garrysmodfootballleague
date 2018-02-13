@@ -1,5 +1,9 @@
 AddStadium("df_soccer_2006_v6", {
-	ballPos = Vector(6144, 3328, 1050)
+	ballPos = Vector(6144,3328,1050),
+	manualTextPos1 = Vector(6033,5103,1902),
+	manualTextAngle1 = Angle(0,0,90),
+	manualTextPos2 = Vector(6255,1553,1902),
+	manualTextAngle2 = Angle(0,180,90)
 })
 
 if SERVER then

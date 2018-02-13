@@ -38,6 +38,11 @@ if CLIENT then
 else
 	netstream.Hook("handUp", function(ply)
 		ply:PlayGesture(ACT_SIGNAL_HALT)
+		for v,k in pairs(team.GetPlayers(ply:Team())) do
+			if not k == ply then
+				k:Notify(0,1, ply:Nick().." is requesting attention.", 5, ply)
+			end
+		end
 	end)
 
 	netstream.Hook("ballKick", function(ply)

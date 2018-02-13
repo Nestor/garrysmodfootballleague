@@ -30,6 +30,16 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 	end
 
 	timer.Simple(2, function() gfl.ball:Remove() end)
-	timer.Simple(9, function() gfl.RespawnAll() end)
+	timer.Simple(9, function()
+		gfl.RespawnAll()
+		for v,k in pairs(player.GetAll()) do
+			k:Freeze(true)
+		end
+	end)
 	timer.Simple(14, function() gfl.ReloadBall() end)
+	timer.Simple(15, function()
+		for v,k in pairs(player.GetAll()) do
+			k:Freeze(false)
+		end
+	end)
 end
