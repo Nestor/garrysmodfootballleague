@@ -68,7 +68,7 @@ end
 
 local helperTrackingEnts = {}
 
-local function addTrackEntity(icoX, icoY, text, lifeTime, target)
+function addTrackEntity(icoX, icoY, text, lifeTime, target)
     surface.PlaySound("nui/beepclear.wav")
 
     local kek = {
@@ -81,6 +81,11 @@ local function addTrackEntity(icoX, icoY, text, lifeTime, target)
     }
     table.insert(helperTrackingEnts, kek)
 end
+
+netstream.Hook("notify", function(icX,icY,text,lifeTime,target)
+	print(text)
+	return addTrackEntity(icX,icY,text,(lifeTime or 5), (target or LocalPlayer()))
+end)
 
 local annoyingEnts = {}
 local displayInfo = {

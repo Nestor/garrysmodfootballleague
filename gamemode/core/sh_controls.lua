@@ -17,6 +17,8 @@ if CLIENT then
 			netstream.Start("handUp")
 			lastHand = CurTime()
 			return false
+		elseif key == IN_USE and LocalPlayer().ScoreTime + 10 > CurTime() then
+
 		end
 	end
 
