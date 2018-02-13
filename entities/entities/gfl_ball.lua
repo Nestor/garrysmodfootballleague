@@ -16,11 +16,15 @@ if SERVER then
 	end
 
 	function ENT:PhysicsCollide(data, collider)
-		local player = data.HitEntity
-		if IsValid(player) and player:IsPlayer() then
-			self.lastToucher = player
+		local ply = data.HitEntity
+		if IsValid(ply) and ply:IsPlayer() then
+			self.lastToucher = ply
 			local phys = self:GetPhysicsObject()
-			phys:ApplyForceOffset(player:GetAimVector():GetNormalized() * 1000, player:GetEyeTrace().HitPos)
+			phys:ApplyForceOffset(ply:GetAimVector():GetNormalized() * 1000, ply:GetEyeTrace().HitPos)
+			self:EmitSound("gfl/kick_"..math.random(1,4)..".wav", 70)
+			for v,k in pairs(player.GetAll()) do
+				netstream.Start(k, "ballDribbleAnim", ply)
+			end
 		end
 	end
 end

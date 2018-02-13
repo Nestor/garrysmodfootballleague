@@ -29,6 +29,32 @@ RegisterLuaAnimation('gfl_normal_kick', {
 	Type = TYPE_GESTURE
 })
 
+RegisterLuaAnimation('gfl_small_kick', {
+	FrameData = {
+		{
+			BoneInfo = {
+				['ValveBiped.Bip01_R_Calf'] = {
+					RU = -10.555652469149
+				},
+				['ValveBiped.Bip01_R_Thigh'] = {
+					RU = -15.441395011994
+				}
+			},
+			FrameRate = 10
+		},
+		{
+			BoneInfo = {
+				['ValveBiped.Bip01_R_Calf'] = {
+				},
+				['ValveBiped.Bip01_R_Thigh'] = {
+				}
+			},
+			FrameRate = 2
+		}
+	},
+	Type = TYPE_GESTURE
+})
+
 hook.Add("CalcMainActivity", "GFL-ANIMATIONBASE", function( Player, Velocity )
 	local speed = Velocity:Length()
 	local fov = Player:GetFOV()

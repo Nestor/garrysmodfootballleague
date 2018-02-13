@@ -21,6 +21,7 @@ if SERVER then
 		self:SetTeam(teamx)
 		self:SetPlayerColor(ColToVec(team.GetColor(teamx)))
 		self:ChatPrint("You have switched teams")
+		self:Spawn()
 	end
 
 	function gfl.RespawnAll()
@@ -57,6 +58,26 @@ if SERVER then
 				end
 			end
 		end
+	end
+
+	netstream.Hook("switchBlue", function(ply)
+		local redPlayers = #team.GetPlayers(2)
+		local bluePlayers = #team.GetPlayers(1)
+		if redPlayers > bluePlayers then
+			ply:ChangeTeam(1)
+		end
+	end)
+
+	netstream.Hook("switchRed", function(ply)
+		local redPlayers = #team.GetPlayers(2)
+		local bluePlayers = #team.GetPlayers(1)
+		if bluePlayers > redPlayers then
+			ply:ChangeTeam(2)
+		end
+	end)
+
+	function GFL:ShowHelp(ply)
+		ply:ConCommand("gfl_openmenu")
 	end
 end
 

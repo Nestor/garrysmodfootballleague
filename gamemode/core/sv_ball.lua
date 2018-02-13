@@ -39,3 +39,19 @@ end
 function GFL:InitPostEntity()
 	gfl.ReloadBall()
 end
+
+
+timer.Create("GFL-CHECK-FOR-BALL", 5, 0, function()
+	if IsValid(gfl.ball) then
+		for v,k in pairs(ents.FindInBox(gfl.GetStadium().Boundary1,gfl.GetStadium().Boundary2)) do
+			if k:GetClass() == "gfl_ball" then
+				return
+			end
+		end
+
+		for v,k in pairs(player.GetAll()) do
+			k:Notify(0,1,"Ball automatically respawned.")
+		end
+		return gfl.ReloadBall()
+	end
+end)

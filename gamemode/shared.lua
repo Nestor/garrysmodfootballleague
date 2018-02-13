@@ -6,7 +6,7 @@
 
 -- Define gamemode information.
 GM.Name = "Garry's Mod Football League"
-GM.Author = "TheVingard"
+GM.Author = "vin"
 GM.Website = "https://www.vingard.github.io"
 
 GFL = GM

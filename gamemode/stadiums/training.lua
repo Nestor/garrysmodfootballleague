@@ -3,7 +3,9 @@ AddStadium("df_soccer_2006_v6", {
 	manualTextPos1 = Vector(6033,5103,1902),
 	manualTextAngle1 = Angle(0,0,90),
 	manualTextPos2 = Vector(6255,1553,1902),
-	manualTextAngle2 = Angle(0,180,90)
+	manualTextAngle2 = Angle(0,180,90),
+	Boundary1 = Vector(7566.340332, 1610.192749, 2176.337402),
+	Boundary2 = Vector(4792.527832, 5046.065430, 1037.728271)
 })
 
 if SERVER then

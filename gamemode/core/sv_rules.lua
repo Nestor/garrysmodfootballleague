@@ -16,7 +16,7 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 			k:EmitSound("vo/coast/odessa/male01/nlo_cheer0"..math.random(1,4)..".wav")
 		end
 		for v,k in pairs(team.GetPlayers(teamGoalId)) do
-			k:Notify(0,1,"You've conceded a goal scored by "..scorer:Nick()..".", 10, scorer)
+			k:Notify(2,0,"You've conceded a goal scored by "..scorer:Nick()..".", 10, scorer)
 			k:EmitSound("vo/coast/odessa/male01/nlo_cubdeath0"..math.random(1,2)..".wav")
 		end
 	else
@@ -25,12 +25,18 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 			k:EmitSound("vo/coast/odessa/male01/nlo_cheer0"..math.random(1,4)..".wav")
 		end
 		for v,k in pairs(team.GetPlayers(scorer:Team())) do
-			k:Notify(0,1,"You've conceded a goal scored by "..scorer:Nick().." (OWN-GOAL).", 10, scorer)
+			k:Notify(2,0,"You've conceded a goal scored by "..scorer:Nick().." (OWN-GOAL).", 10, scorer)
 			k:EmitSound("vo/coast/odessa/male01/nlo_cubdeath0"..math.random(1,2)..".wav")
 		end
+		timer.Simple(10, function()
+			if IsValid(scorer) then
+				scorer:Notify(1,0,"You may be banned if you continue to score own-goals!")
+			end
+		end)
 	end
 
 	team.SetScore(scoringTeam, team.GetScore(scoringTeam)+1)
+	scorer:AddFrags(1)
 
 	for v,k in pairs(player.GetAll()) do
 		netstream.Start(k, "score", scorer, scoringTeam)

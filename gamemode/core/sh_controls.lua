@@ -31,6 +31,13 @@ if CLIENT then
 		end
 	end)
 
+	netstream.Hook("ballDribbleAnim", function(ply)
+		if ply.SetLuaAnimation then
+			ply:SetLuaAnimation("gfl_small_kick")
+		end
+	end)
+
+
 	netstream.Hook("playGesture", function(ply, act)
 		ply:AnimRestartGesture(GESTURE_SLOT_CUSTOM, act, true)
 	end)

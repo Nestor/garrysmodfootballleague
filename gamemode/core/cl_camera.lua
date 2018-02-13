@@ -22,7 +22,7 @@ function GFL:CalcView(ply, pos, angles, fov)
 	trace.filter = LocalPlayer()
 	local trace = util.TraceLine(trace)
 	if( trace.HitPos:Distance( pos ) < distance - 10 ) then
-		distance = trace.HitPos:Distance( pos ) - 10
+		distance = math.Approach(trace.HitPos:Distance( pos ) - 10, 110, 0.5)
 	end
 
 	view.origin = pos - (angles:Forward() * distance) + (angles:Right() * 40)
