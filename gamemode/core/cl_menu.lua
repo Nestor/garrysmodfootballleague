@@ -38,7 +38,7 @@ local function openMenu()
 	local desc = [[
 	Information:
 	Garry's Mod Football League is a gamemode created
-	by TheVingard. You can click the link below to
+	by vin. You can click the link below to
 	goto our workshop page.
 
 	Controls:
