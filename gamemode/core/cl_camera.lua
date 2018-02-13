@@ -26,7 +26,7 @@ function GFL:CalcView(ply, pos, angles, fov)
 		current = math.Approach(current, 159, 1)
 	end
 	current = math.Approach(current, distance, (distance - distance) * FrameTime() * 10)
-	print(current)
+
 	distance = current
 	view.origin = pos - (angles:Forward() * distance) + (angles:Right() * 40)
 	view.angles = angles

@@ -3,6 +3,8 @@ function GFL:CreateTeams()
 	TEAM_HOME = 1
 	team.SetUp(2, "AWAY", Color(255,0,0,255), true)
 	TEAM_AWAY = 2
+	team.SetUp(3, "SPECTATORS", Color(70,70,70,255), false)
+	TEAM_SPEC = 3
 end
 
 local function ColToVec( color )
@@ -20,7 +22,10 @@ if SERVER then
 	function gfl.meta:ChangeTeam(teamx)
 		self:SetTeam(teamx)
 		self:SetPlayerColor(ColToVec(team.GetColor(teamx)))
-		self:ChatPrint("You have switched teams")
+		self:ChatPrint("You have switched to team: "..team.GetName(teamx))
+		if teamx == 3 then
+			self:SetModel("models/player/Group01/male_06.mdl")
+		end
 		self:Spawn()
 	end
 
