@@ -14,7 +14,7 @@ RegisterLuaAnimation('gfl_normal_kick', {
 					RU = -50.441395011994
 				}
 			},
-			FrameRate = 40
+			FrameRate = 30
 		},
 		{
 			BoneInfo = {

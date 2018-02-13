@@ -6,24 +6,24 @@ local iconMat = {
     Material("hud/iconsheet3.png"),
 }
 
-function PLUGIN:LoadFonts(font, genericFont)
-    surface.CreateFont( "HelperFont", {
-        font = font,
-        extended = true,
-        size = 34,
-        weight = 500,
-        blursize = 0,
-        scanlines = 0,
-        antialias = true,
-        underline = false,
-        italic = false,
-        symbol = false,
-        rotary = false,
-        shadow = true,
-        additive = false,
-        outline = false,
-    } )
-end
+
+surface.CreateFont( "HelperFont", {
+	font = font,
+	extended = true,
+	size = 34,
+	weight = 500,
+	blursize = 0,
+	scanlines = 0,
+	antialias = true,
+	underline = false,
+	italic = false,
+	symbol = false,
+	rotary = false,
+	shadow = true,
+	additive = false,
+	outline = false,
+} )
+
 
 local matSize = 256
 local iconSize = 60
@@ -113,7 +113,7 @@ hook.Add("HUDPaintBackground","DrawNSHintsBG",function()
     local realTime = RealTime()
     local localPlayer = LocalPlayer()
 
-	if (localPlayer.getChar(localPlayer) and nextUpdate < realTime) then
+	if (nextUpdate < realTime) then
 		nextUpdate = realTime + 0.8
 
 		lastTrace.start = localPlayer.GetShootPos(localPlayer)
