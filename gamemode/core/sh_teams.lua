@@ -1,6 +1,8 @@
 function GFL:CreateTeams()
-	TEAM_HOME = team.SetUp(1, "HOME", Color(255,255,255,255), true)
-	TEAM_AWAY = team.SetUp(2, "AWAY", Color(255,255,255,255), true)
+	team.SetUp(1, "HOME", Color(255,255,255,255), true)
+	TEAM_HOME = 1
+	team.SetUp(2, "AWAY", Color(255,255,255,255), true)
+	TEAM_AWAY = 2
 end
 
 local function ColToVec( color )

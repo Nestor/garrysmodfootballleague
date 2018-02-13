@@ -22,13 +22,13 @@ if SERVER then
 		goal:SetAngles( Angle( 90, 90, 0 ) )
 		goal:SetPos( Vector( 6140, 1915, 1065 ) )
 		goal:SetRenderMode( RENDERMODE_TRANSALPHA )
-		goal:SetColor( Color( 255, 255, 255, 0) )
+		goal:SetColor( Color( 255, 255, 255, 190) )
 		goal:SetSolid( SOLID_OBB )
 		goal:SetCustomCollisionCheck( true )
 		goal:SetTrigger( true )
 		goal.StartTouch = function( self, otherEntity )
 			if otherEntity == gfl.ball then
-				gfl.ScoreGoal(TEAM_HOME, gfl.ball.lastToucher)
+				gfl.ScoreGoal(TEAM_HOME, otherEntity.lastToucher)
 				self:SetTrigger(false)
 				timer.Simple(10, function() self:SetTrigger(true) end)
 			end
@@ -40,13 +40,13 @@ if SERVER then
 		goal:SetAngles( Angle( 90, 90, 0 ) )
 		goal:SetPos( Vector( 6140, 4743, 1065 ) )
 		goal:SetRenderMode( RENDERMODE_TRANSALPHA )
-		goal:SetColor( Color( 255, 255, 255, 0) )
+		goal:SetColor( Color( 255, 255, 255, 190) )
 		goal:SetSolid( SOLID_OBB )
 		goal:SetCustomCollisionCheck( true )
 		goal:SetTrigger( true )
 		goal.StartTouch = function( self, otherEntity )
 			if otherEntity == gfl.ball then
-				gfl.ScoreGoal(TEAM_AWAY, gfl.ball.lastToucher)
+				gfl.ScoreGoal(TEAM_AWAY, otherEntity.lastToucher)
 				self:SetTrigger(false)
 				timer.Simple(10, function() self:SetTrigger(true) end)
 			end
