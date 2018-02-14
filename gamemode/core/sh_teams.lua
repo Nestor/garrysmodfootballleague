@@ -24,23 +24,8 @@ if SERVER then
 		p:Spawn()
 		p:SetPlayerColor(ColToVec(team.GetColor(p:Team())))
 		gfl.BeginStamina(p)
-		ply:SetNW2String("class", "Player")
-		ply:ConCommand("gfl_openclassmenu")
-	end
-
-	function gfl.meta:SortClasses()
-		local team = self:Team()
-		local captainOnline = false
-		local keeperOnline = false
-
-		for v,k in pairs(team.GetPlayers(team)) do
-			local class = k:GetNW2String("class","error")
-			if class == "Captain" then
-				captainOnline = true
-			elseif class == "Goalkeeper" then
-				keeperOnline = true
-			end
-		end
+		p:SetNW2String("class", "Player")
+		p:ConCommand("gfl_openclassmenu")
 	end
 
 	function gfl.meta:ChangeTeam(teamx)
@@ -51,8 +36,8 @@ if SERVER then
 			self:SetModel("models/player/Group01/male_06.mdl")
 		end
 		self:Spawn()
-		ply:SetNW2String("class", "Player")
-		ply:ConCommand("gfl_openclassmenu")
+		self:SetNW2String("class", "Player")
+		self:ConCommand("gfl_openclassmenu")
 	end
 
 	function gfl.RespawnAll()
