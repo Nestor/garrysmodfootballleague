@@ -54,18 +54,18 @@ function GFL:HUDPaint()
 	surface.SetFont("nameFont")
 
 	local ply = LocalPlayer()
-	for _, target in pairs(player.GetAll()) do
-		if target:Alive() and not target == LocalPlayer() then
-			local name = target:Nick()
-			local targetPos = target:GetPos() + Vector(0,0,64)
+	for v, k in pairs(player.GetAll()) do
+		if k != LocalPlayer() then
+			local name = k:Nick()
+			local targetPos = k:GetPos() + Vector(0,0,64)
 			local targetDistance = ply:GetPos():Distance( targetPos )
 			local targetScreenpos = targetPos:ToScreen()
 
 			if targetDistance < 460 then
 				surface.SetTextPos(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y))
-				surface.DrawText("Player: "..target:Nick())
+				surface.DrawText("Player: "..name)
 				surface.SetTextPos(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y)+12)
-				surface.DrawText("Class: "..LocalPlayer():GetNW2String("class", "Player"))
+				surface.DrawText("Class: "..k:GetNW2String("class", "Player"))
 			end
 		end
 	end
