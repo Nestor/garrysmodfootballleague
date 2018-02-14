@@ -55,6 +55,7 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 		for v,k in pairs(player.GetAll()) do
 			k:Freeze(true)
 			k:RestoreStamina(100)
+			k:SetRunSpeed(gfl.runSpeed)
 		end
 	end)
 	timer.Simple(14, function() gfl.ReloadBall() end)
@@ -88,6 +89,7 @@ function gfl.MatchStart()
 			for v,k in pairs(player.GetAll()) do
 				k:Freeze(true)
 				k:RestoreStamina(100)
+				k:SetRunSpeed(gfl.runSpeed)
 			end
 		end)
 		timer.Simple(14, function() gfl.ReloadBall() end)
