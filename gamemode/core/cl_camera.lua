@@ -25,7 +25,7 @@ function GFL:CalcView(ply, pos, angles, fov)
 	if( trace.HitPos:Distance( pos ) < distance - 1 ) then
 		current = math.Approach(current, 159, 1)
 	end
-	current = math.Approach(current, distance, (distance - distance) * FrameTime() * 10)
+	current = math.Approach(current, distance, FrameTime() * 40)
 
 	distance = current
 	view.origin = pos - (angles:Forward() * distance) + (angles:Right() * 40)
