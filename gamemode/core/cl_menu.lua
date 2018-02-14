@@ -59,7 +59,7 @@ local function openMenu()
 	button:SetPos( 25, 275 )
 	button:SetSize( 250, 30 )
 	button.DoClick = function()
-		gui.OpenURL( "idklol" )
+		gui.OpenURL( "http://steamcommunity.com/sharedfiles/filedetails/?id=1301275288" )
 	end
 
 	local button = vgui.Create( "DButton", Menu )
