@@ -11,6 +11,8 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 			if k == scorer then
 				k:Notify(0,1,"YOU SCORED! Press E to celebrate!", 7)
 				scorer:AddFrags(1)
+				scorer:SetPData("goalsScored", scorer:GetPData("goalsScored", 0) + 1) -- Save goals to database
+				scorer:ChatPrint("You have scored "..scorer:GetPData("goalsScored", 0).." goal(s) so far on this server!")
 			else
 				k:Notify(0,1, scorer:Nick().." has scored! Go and celebrate with him!", 10, scorer)
 			end
@@ -28,6 +30,11 @@ function gfl.ScoreGoal(teamGoalId, scorer)
 		for v,k in pairs(team.GetPlayers(scorer:Team())) do
 			k:Notify(2,0,"You've conceded a goal scored by "..scorer:Nick().." (OWN-GOAL).", 10, scorer)
 			k:EmitSound("vo/coast/odessa/male01/nlo_cubdeath0"..math.random(1,2)..".wav")
+		end
+		for v,k in pairs(player.GetAll()) do
+			if k:IsAdmin() then
+				k:ChatPrint("[ADMIN NOTICE] "..scorer:Nick().." scored an own-goal.")
+			end
 		end
 		timer.Simple(10, function()
 			if IsValid(scorer) then

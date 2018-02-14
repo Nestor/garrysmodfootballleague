@@ -26,6 +26,7 @@ function gfl.ReloadBall()
 		physObj:SetMaterial( "gmod_bouncy" )
 		physObj:EnableMotion(false)
 		timer.Simple(1, function()
+			if not (IsValid(physObj)) then return end
 			physObj:Wake()
 			for v,k in pairs(player.GetAll()) do
 				k:EmitSound("gfl/whistle.wav")
