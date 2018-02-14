@@ -8,8 +8,9 @@
 GM.Name = "Garry's Mod Football League"
 GM.Author = "vin"
 GM.Website = "https://www.vingard.github.io"
-GM.Version = file.Read("gamemodes/gfl/version", "GAME") or "error"
-
+if SERVER then
+	GM.Version = file.Read("gamemodes/gfl/version", "GAME") or "error"
+end
 GFL = GM
 
 -- Called after the gamemode has loaded.
