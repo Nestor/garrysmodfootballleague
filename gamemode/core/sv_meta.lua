@@ -7,3 +7,10 @@ end
 function gfl.meta:Notify(icX,icY,text,lifeTime,target)
 	netstream.Start(self,"notify",icX,icY,text,lifeTime,target)
 end
+
+function gfl.meta:RestoreStamina(amount)
+	local current = self.stamina or 0
+	local value = math.Clamp(current + amount, 0, 100)
+	self.stamina = value
+	netstream.Start(client, "stamUpdt", value)
+end

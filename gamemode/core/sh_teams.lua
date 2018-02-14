@@ -17,6 +17,7 @@ if SERVER then
 		p:SetTeam(team.BestAutoJoinTeam())
 		p:Spawn()
 		p:SetPlayerColor(ColToVec(team.GetColor(p:Team())))
+		gfl.BeginStamina(p)
 	end
 
 	function gfl.meta:ChangeTeam(teamx)

@@ -79,6 +79,7 @@ function gfl.MatchStart()
 			gfl.RespawnAll()
 			for v,k in pairs(player.GetAll()) do
 				k:Freeze(true)
+				k:RestoreStamina(100)
 			end
 		end)
 		timer.Simple(14, function() gfl.ReloadBall() end)

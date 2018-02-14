@@ -60,10 +60,11 @@ else
 			ball:EmitSound("gfl/kick_"..math.random(1,4)..".wav", 90)
 			local phys = gfl.ball:GetPhysicsObject()
 			local damage = 35
-			phys:ApplyForceOffset(ply:GetAimVector():GetNormalized() * (damage * 100 * 5), trace.HitPos)
+			phys:ApplyForceOffset(ply:GetAimVector():GetNormalized() * (damage * (ply.stamina/2+45) * 5), trace.HitPos)
 			--ball:SetVelocity(ply:GetAimVector():GetNormalized() * (damage * 100 * 5))
 			ball.lastKicker = ply
 			ball.lastToucher = ply
+			ply:RestoreStamina(-14)
 	end)
 
 	local celebrations = {
