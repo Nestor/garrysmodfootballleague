@@ -11,6 +11,12 @@ local function ColToVec( color )
 	return ( Vector( color.r / 255, color.g / 255, color.b / 255 ) )
 end
 
+local classes = {
+"Goalkeeper",
+"Captain",
+"Player"
+}
+
 if SERVER then
 	function GFL:PlayerInitialSpawn(p)
 		p:SetModel("models/konnie/football/football.mdl")
@@ -18,6 +24,21 @@ if SERVER then
 		p:Spawn()
 		p:SetPlayerColor(ColToVec(team.GetColor(p:Team())))
 		gfl.BeginStamina(p)
+	end
+
+	function gfl.meta:SortClasses()
+		local team = self:Team()
+		local captainOnline = false
+		local keeperOnline = false
+
+		for v,k in pairs(team.GetPlayers(team)) do
+			local class = k:GetNW2String("class","error")
+			if class == "Captain" then
+				captainOnline = true
+			elseif class == "Goalkeeper" then
+				keeperOnline = true
+			end
+		end
 	end
 
 	function gfl.meta:ChangeTeam(teamx)
@@ -28,6 +49,7 @@ if SERVER then
 			self:SetModel("models/player/Group01/male_06.mdl")
 		end
 		self:Spawn()
+		self:SortClasses()
 	end
 
 	function gfl.RespawnAll()

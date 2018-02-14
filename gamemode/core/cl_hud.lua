@@ -12,6 +12,14 @@ surface.CreateFont("barFont",{
 	shadow = true,
 })
 
+surface.CreateFont("nameFont",{
+	font = "Arial",
+	size = 15,
+	antialias = true,
+	shadow = true,
+	outline = true
+})
+
 
 function GFL:HUDPaint()
 	if cameraMode then return end
@@ -41,6 +49,26 @@ function GFL:HUDPaint()
 	surface.DrawTexturedRect(0,0,barsizex,barsizey)
 
 	draw.SimpleText("STAMINA", "barFont", barsizex/2, barsizey/2, Color(255,255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+	surface.SetTextColor(255,255,255,255)
+	surface.SetFont("nameFont")
+
+	local ply = LocalPlayer()
+	for _, target in pairs(player.GetAll()) do
+		if target:Alive() then -- not target == LocalPlayer()
+			local name = target:Nick()
+			local targetPos = target:GetPos() + Vector(0,0,64)
+			local targetDistance = ply:GetPos():Distance( targetPos )
+			local targetScreenpos = targetPos:ToScreen()
+
+			if targetDistance < 460 then
+				surface.SetTextPos(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y))
+				surface.DrawText("Player: "..target:Nick())
+				surface.SetTextPos(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y)+12)
+				surface.DrawText("Class: "..LocalPlayer():GetNWString("class", "Player"))
+			end
+		end
+	end
 end
 
 local hidden = {}

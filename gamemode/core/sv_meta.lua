@@ -14,3 +14,7 @@ function gfl.meta:RestoreStamina(amount)
 	self.stamina = value
 	netstream.Start(client, "stamUpdt", value)
 end
+
+function gfl.meta:SetGFLClass(name)
+	self:SetNW2String("class", name)
+end
