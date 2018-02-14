@@ -47,6 +47,7 @@ local function openMenu()
 	R - Call for team
 	SHIFT - Sprint
 	F1 - Open menu
+	F2 - Class menu
 	]]
 
 	local info = vgui.Create( "DLabel", Menu )
@@ -71,3 +72,48 @@ local function openMenu()
 	end
 end
 concommand.Add("gfl_openmenu", openMenu)
+
+local function ClassMenu()
+	local keeperOnline = false
+	local lpIsKeeper = false
+
+	for v,k in pairs(team.GetPlayers(LocalPlayer():Team())) do
+		local class = k:GetNW2String("class","error")
+		if class == "Goalkeeper" then
+			keeperOnline = true
+			if k == LocalPlayer() then
+				lpIsKeeper = true
+			end
+		end
+	end
+
+	local lpIsPlayer = (LocalPlayer():GetNW2String("class", "error")=="Player")
+
+
+	local ClassSelect = vgui.Create("DFrame")
+	ClassSelect:SetSize(300,100)
+	ClassSelect:Center()
+	ClassSelect:SetTitle("Class Selection")
+	ClassSelect:MakePopup()
+
+	local button = vgui.Create("DButton", ClassSelect)
+	button:SetPos(25,30)
+	button:SetSize(250,30)
+	button:SetText("Become Goalkeeper")
+	button:SetEnabled((not keeperOnline and not lpIsKeeper))
+	button.DoClick = function()
+		netstream.Start("becomeKeeper")
+		ClassSelect:Remove()
+	end
+
+	local button = vgui.Create("DButton", ClassSelect)
+	button:SetPos(25,60)
+	button:SetSize(250,30)
+	button:SetText("Become Player")
+	button:SetEnabled(lpIsPlayer)
+	button.DoClick = function()
+		netstream.Start("becomePlayer")
+		ClassSelect:Remove()
+	end
+end
+concommand.Add("gfl_openclassmenu", ClassMenu)

@@ -55,7 +55,7 @@ function GFL:HUDPaint()
 
 	local ply = LocalPlayer()
 	for _, target in pairs(player.GetAll()) do
-		if target:Alive() then -- not target == LocalPlayer()
+		if target:Alive() and not target == LocalPlayer() then
 			local name = target:Nick()
 			local targetPos = target:GetPos() + Vector(0,0,64)
 			local targetDistance = ply:GetPos():Distance( targetPos )
@@ -65,7 +65,7 @@ function GFL:HUDPaint()
 				surface.SetTextPos(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y))
 				surface.DrawText("Player: "..target:Nick())
 				surface.SetTextPos(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y)+12)
-				surface.DrawText("Class: "..LocalPlayer():GetNWString("class", "Player"))
+				surface.DrawText("Class: "..LocalPlayer():GetNW2String("class", "Player"))
 			end
 		end
 	end

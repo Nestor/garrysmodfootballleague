@@ -12,9 +12,9 @@ local function ColToVec( color )
 end
 
 local classes = {
-"Goalkeeper",
-"Captain",
-"Player"
+	"Goalkeeper",
+	"Captain",
+	"Player"
 }
 
 if SERVER then
@@ -24,6 +24,8 @@ if SERVER then
 		p:Spawn()
 		p:SetPlayerColor(ColToVec(team.GetColor(p:Team())))
 		gfl.BeginStamina(p)
+		ply:SetNW2String("class", "Player")
+		ply:ConCommand("gfl_openclassmenu")
 	end
 
 	function gfl.meta:SortClasses()
@@ -49,7 +51,8 @@ if SERVER then
 			self:SetModel("models/player/Group01/male_06.mdl")
 		end
 		self:Spawn()
-		self:SortClasses()
+		ply:SetNW2String("class", "Player")
+		ply:ConCommand("gfl_openclassmenu")
 	end
 
 	function gfl.RespawnAll()
@@ -88,6 +91,10 @@ if SERVER then
 		end
 	end
 
+	local captainCandidatesHOME = {}
+	local captainCandidatesAWAY = {}
+
+
 	netstream.Hook("switchBlue", function(ply)
 		local redPlayers = #team.GetPlayers(2)
 		local bluePlayers = #team.GetPlayers(1)
@@ -104,8 +111,29 @@ if SERVER then
 		end
 	end)
 
+	netstream.Hook("becomeKeeper", function(ply)
+		for v,k in pairs(team.GetPlayers(ply:Team())) do
+			local class = k:GetNW2String("class","error")
+			if class == "Goalkeeper" then
+				return
+			end
+		end
+
+		ply:SetNW2String("class", "Goalkeeper")
+		ply:Notify(0,1, "You are the Goalkeeper, goto the goal and keep the ball out!", 7)
+	end)
+
+	netstream.Hook("becomePlayer", function(ply)
+		ply:SetNW2String("class", "Player")
+		ply:Notify(0,1, "You are a player press F1 to view the controls and pass to your teammates!", 5)
+	end)
+
 	function GFL:ShowHelp(ply)
 		ply:ConCommand("gfl_openmenu")
+	end
+
+	function GFL:ShowTeam(ply)
+		ply:ConCommand("gfl_openclassmenu")
 	end
 end
 
