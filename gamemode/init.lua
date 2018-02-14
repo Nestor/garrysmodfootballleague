@@ -16,6 +16,10 @@ gfl.meta = FindMetaTable( "Player" )
 
 AddCSLuaFile("shared.lua")
 include("shared.lua")
+
+resource.AddWorkshop("495666469") -- df_soccer_2006_v6
+resource.AddWorkshop("1301275288") -- Gamemode
+
 MsgC(Color(255,255,0), "\nINSTALLED GFL VERSION: "..GFL.Version)
 
 MsgC(Color(255,255,0), "\nGetting latest version from master server...\n")
