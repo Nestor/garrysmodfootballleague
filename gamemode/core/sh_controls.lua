@@ -53,7 +53,7 @@ else
 		local trace = ply:GetEyeTrace()
 		local feetPos = ply:GetPos() + ply:GetAngles():Up() * 3
 		local ball = gfl.ball
-		if feetPos:Distance(ball:GetPos()) > 51 then return end
+		if feetPos:Distance(ball:GetPos()) > 51 then return end -- compensate for lag by allowing some slack on the distance
 			for v,k in pairs(player.GetAll()) do
 				netstream.Start(k, "ballKickAnim", ply)
 			end
@@ -62,8 +62,6 @@ else
 			local damage = 35
 			local force = ply:GetAimVector():GetNormalized() * (damage * (ply.stamina/2+45) * 5)
 			phys:ApplyForceOffset(force, trace.HitPos)
-			ply:ChatPrint(tostring(force))
-			--ball:SetVelocity(ply:GetAimVector():GetNormalized() * (damage * 100 * 5))
 			ball.lastKicker = ply
 			ball.lastToucher = ply
 			ply:RestoreStamina(-14)
