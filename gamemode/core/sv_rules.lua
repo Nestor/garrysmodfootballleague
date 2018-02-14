@@ -101,3 +101,7 @@ function gfl.MatchStart()
 	end)
 end
 
+function GFL:CanPlayerSuicide()
+	return false
+end
+
